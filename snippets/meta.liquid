@@ -1,0 +1,42 @@
+{% assign maxwords = 30 %}
+{% if template contains 'product' %}
+  {% if product.vendor != 'Original Fuzz' %}
+    <title>{{ product.title }} by {{ product.vendor }} | {{ shop.name }}</title>
+    <meta property="og:title" content="{{ product.title }} by {{ product.vendor }} | {{ shop.name }}"/>
+  {% else %}
+    <title>{{ product.title }} | {{ shop.name }}</title>
+    <meta property="og:title" content="{{ product.title }} | {{ shop.name }}"/>
+    <meta property="og:type" content="product"/>
+    <meta property="og:url" content="{{ shop.url }}{{ product.url }}" />
+    <meta property="og:image" content="{{ product.featured_image | product_img_url: 'compact' }}" />
+	<meta property="og:email" content="{{ shop.email }}" />
+  {% endif %}
+    <meta name="description" property="og:description" content="{{ product.description | strip_html | strip_newlines | truncatewords: maxwords | escape }}" />
+{% elsif template contains 'page' %}
+  <title>{{ page_title }} | {{ shop.name }}</title>
+  <meta property="og:title" content="{{ page_title }} | {{ shop.name }}"/>
+  <meta name="description" property="og:description" content="{{ page.content | strip_html | strip_newlines | truncatewords: maxwords | escape }}" />
+{% elsif template == 'blog' %}
+  <title>{{ page_title }} | {{ shop.name }}</title>
+  <meta property="og:title" content="{{ page_title }} | {{ shop.name }}"/>
+  <meta name="description" property="og:description" content="{{ shop.description }}">  
+{% elsif template == 'article' %}
+  <title>{{ page_title }} | {{ shop.name }}</title>
+  <meta property="og:title" content="{{ page_title | strip_html | strip_newlines | truncatewords: maxwords | escape }} | {{ shop.name }}"/>
+  <meta name="description" property="og:description" content="{{ article.content | strip_html | strip_newlines | truncatewords: maxwords | escape }}" />
+  <meta property="og:type" content="blog"/>
+{% elsif template == '404' %}
+  <title>Page Not Found | {{ shop.name }}</title>
+  <meta name="description" property="og:description" content="{{ shop.description }}">
+{% else %}
+    <title>{{ shop.name }}</title>
+    <meta property="og:title" content="{{ shop.name }}"/>
+    <meta name="description" property="og:description" content="{{ shop.description }}">
+{% endif %}
+
+{% if template contains 'product' and collection %}
+<link rel="canonical" href="{{ shop.url }}{{ product.url }}" />
+<meta name="description" property="og:description" content="{{ shop.description }}">
+{% endif %}
+<meta property="og:site_name" content="{{ shop.name }}" />
+<meta name="author" content="Lee McAlilly - leemcalilly.com">

@@ -1,0 +1,149 @@
+<div id="interior_wrap" class="cf">
+  <section id="content" class="cf">
+    <div id="main" class="g3 cf">
+    
+      <div id="product_left" class="g2 cf">
+        <div id="product_images" class="cf">
+          <div id="product_main_image" class="cf">
+            <img src="{{ product.images[0] | product_img_url: "grande" }}" alt="{{ product.title | escape }}" />
+          </div><!-- end product_main_image -->
+        
+          <div id="product_thumbs" class="cf">
+            {% if product.images.size > 1 %}
+              <ul id="mycarousel" class="jcarousel-skin-fuzz">
+                {% for image in product.images %}
+                  <li>
+                    <a {% if forloop.first %} class="active"{% endif %} href="{{ image | product_img_url: "grande" }}">
+                      <img src="{{ image | product_img_url: "small" }}" alt="{{ product.title | escape }}" />
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </div><!-- end product_thumbs -->
+        </div><!-- end product_images -->
+      
+        <div id="product_details">
+          <p>The Fuzz Bag is a gig bag for guitar players. It combines the comfortable aesthetic of a classic gym bag with a padded pedal case and custom pockets for your gear. It's road-tested by the musicians who designed it, and it's made in the USA.</p>
+        </div><!-- end product_details -->
+      </div><!-- product_left -->
+    
+      <div id="product_right">
+        <div id="product_options" class="g1">
+          <h1>{{ product.title | escape }}</h1>
+          <h2 id="price">
+            <span>{{ product.price | money }}</span>
+              {% if product.compare_at_price_max > product.price %} 
+                <del>{{ product.compare_at_price_max | money }}</del>
+              {% endif %}
+          </h2><!-- end price -->
+      
+          <form method="post" action="/cart/add" class="clear">
+            {% if product.available %}
+              {% if product.variants.size > 1 %}
+                <fieldset id="variants">
+                  <select name="id" id="id">
+                    <option value="{{ product.variants.first.id }}" selected="selected">Choose a Color</option>
+
+                    {% for variant in product.variants %}
+                      {% if variant.available %}
+                        <option value="{{ variant.id }}">{{ variant.title | escape }}</option>
+                      {% else %}
+                        <option value="{{ variant.id }}" disabled="disabled">{{ variant.title | escape }} - SOLD OUT</option>
+                      {% endif %}
+                    {% endfor %}
+                  </select>
+                </fieldset><!-- end variants -->
+              {% else %}
+                {% for variant in product.variants %}
+                  <input type="hidden" name="id" value="{{ variant..id }}" />
+                {% endfor %}
+              {% endif %}
+            
+              <fieldset id="buy">
+                <button class="button pill icon add" type="submit" id="add">Add to Cart</button>
+              </fieldset><!--end buy -->
+            {% else %}
+              <h6>Sold Out</h6>
+            {% endif %}
+          </form><!--end form -->
+        </div><!--end product_options-->
+      
+        <div id="available_colors" class="g1 cf">
+          <h3>Available in 4 Rad Colors</h3>
+          <ul>
+            <li>
+                <a href="#" class="dorado_thumb">
+                 <img src="http://cdn.shopify.com/s/files/1/0097/1902/files/the_el_dorado_grande.jpg?1659" alt="The Fuzz Bag in the Paprika color is called The El Dorado" />
+                </a>
+                The El Dorado (Paprika)
+            </li>
+            
+            <li>
+                <a href="#" class="wolf_thumb">
+                <img src="http://cdn.shopify.com/s/files/1/0097/1902/files/the_wolf_grande.jpg?1659" alt="The Fuzz Bag in the green color is called The Wolf" />
+                </a>
+                The Wolf (Green)
+            </li>
+            
+            <li>
+                <a href="#" class="colonel_thumb">
+                <img src="http://cdn.shopify.com/s/files/1/0097/1902/files/the_colonel_grande.jpg?1659" alt="The Fuzz Bag in the navy color is called The Colonel" />
+                </a>
+                The Colonel (Navy)
+            </li>
+            
+            <li>
+                <a href="#" class="dutchman_thumb">
+                <img src="http://cdn.shopify.com/s/files/1/0097/1902/files/the_flying_dutchman_grande.jpg?1659" alt="The Fuzz Bag in the black color is called The Flying Dutchman" />
+                </a>
+                The Flying Dutchman (Black)
+            </li>
+          </ul>
+        </div><!--end available_colors -->
+                 
+      </div><!-- end product_right -->
+    
+    <div id="product_highlights" class="cf g3">
+      <h2>Features</h2>
+        <ul>
+          <li><img src="http://cdn.shopify.com/s/files/1/0097/1902/files/highlight_accordion.png?1610" alt="Interior accordion pockets in the fuzz bag." /></li>
+          <li><img src="http://cdn.shopify.com/s/files/1/0097/1902/files/highlight_straps.png?2561" alt="Tough canvas straps on the fuzz bag." /></li>
+          <li><img src="http://cdn.shopify.com/s/files/1/0097/1902/files/highlight_ykk.png?1610" alt="YKK zippers on the fuzz bag." /></li>
+          <li><img src="http://cdn.shopify.com/s/files/1/0097/1902/files/highlight_pedal_case.png?2708" alt="Padded, foam pedal case in the fuzz bag." /></li>
+          <li><img src="http://cdn.shopify.com/s/files/1/0097/1902/files/highlight_nylon.png?1610" alt="The fuzz bag has an inner layer made from waterproof, ripstop nylon." /></li>
+          <li><img src="http://cdn.shopify.com/s/files/1/0097/1902/files/hightlight_pick_pocket.png?2702" alt="There's a special pocket just for guitar picks in the fuzz bag." /></li>
+          <li><img src="http://cdn.shopify.com/s/files/1/0097/1902/files/highlight_mesh.png?1610" alt="Interior mesh zip pocket in the fuzz bag." /></li>
+          <li><img src="http://cdn.shopify.com/s/files/1/0097/1902/files/highlight_canvas.png?1610" alt="The fuzz bag is made from 100% cotton duck canvas." /></li>
+        </ul>
+      </div><!-- end product_highlights -->
+    </div><!-- end main -->
+  </section><!-- end content -->
+
+  <section id="complementary" class="cf g3">
+    <div id="product_description" class="cf">
+      {{ product.description }}
+    </div><!-- end product_description -->
+  </section><!-- end complementary-->
+</div><!-- end interior_wrap -->
+
+<!-- popup images -->
+<div id="dorado_popup" class="dialog">
+    <img alt="The El Dorado" src="http://cdn.shopify.com/s/files/1/0097/1902/files/the_el_dorado_grande.jpg?1659" />
+    <p><a id="close_x" class="close" href="#">close</a></p>
+</div><!-- end dorado_popup -->
+        
+<div id="wolf_popup" class="dialog">
+    <img alt="The Wolf" src="http://cdn.shopify.com/s/files/1/0097/1902/files/the_wolf_grande.jpg?1659" />
+    <p><a id="close_x" class="close" href="#">close</a></p>
+</div><!-- end wolf_popup -->
+        
+<div id="colonel_popup" class="dialog">
+    <img alt="The Colonel" src="http://cdn.shopify.com/s/files/1/0097/1902/files/the_colonel_grande.jpg?1659" />
+    <p><a id="close_x" class="close" href="#">close</a></p>
+</div><!-- end colonel_popup -->
+        
+<div id="dutchman_popup" class="dialog">
+    <img alt="The Flying Dutchman" src="http://cdn.shopify.com/s/files/1/0097/1902/files/the_flying_dutchman_grande.jpg?1659" />
+    <p><a id="close_x" class="close" href="#">close</a></p>
+</div><!-- end dutchman_popup -->

@@ -1,0 +1,16 @@
+<div id="interior_wrap" class="cf">
+<section id="content" class="g3 cf">
+  <div id="main" class="g2 cf">
+    <h1>{{ page.title | escape }}</h1>
+    {{ page.content }}  
+  </div><!--end main -->
+    
+  <div id="sidebar" class="g1 cf">      
+    {% include 'follow_fuzz' %}
+      
+    {% include 'article_list' %}
+      
+    {% include 'video' %}
+  </div><!-- end sidebar -->
+</section><!-- end main -->
+</div><!-- end interior_wrap -->

@@ -1,0 +1,56 @@
+<div id="interior_wrap" class="cf">
+  <section id="main">
+    {% paginate search.results by 12 %}
+      <div id="heading">
+        <h1>Search Results</h1>
+      </div>
+  
+      {% if search.results.size > 0 %}
+        <ul id="results" class="clear">
+          {% for item in search.results %}
+            <li{% cycle '', '', ' class="end"' %}>
+              {% if item.featured_image %}
+                <div class="image">
+                  <div class="align">
+                    <a href="{{ item.url | within: collections.all }}">
+                      <img src="{{ item.featured_image | product_img_url: "compact" }}" alt="{{ item.title | escape }}" />
+                    </a>
+                  </div><!--end align -->
+                </div><!--end image -->
+          
+                <h3>
+                  <a href="{{ item.url | within: collections.all }}">{{ item.title | escape | truncate: 15 }}</a>
+                </h3>
+                <h5>
+                  <a href="{{ item.url | within: collections.all }}">View</a>
+                </h5>
+              {% else %}
+          
+                <div class="desc">
+                  <p>{{ item.content | strip_html | strip_newlines | truncate: 115 | highlight: search.terms }}</p>
+                </div><!-- end desc -->
+        
+                <h3>
+                  <a href="{{ item.url }}">{{ item.title | escape | truncate: 15 }}</a>
+                </h3>
+                <h5>
+                  <a href="{{ item.url }}">View</a>
+                </h5>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul><!-- end results -->
+    
+        {% if paginate.pages > 1 %}
+          <div id="paginate">
+            {{ paginate | default_pagination }}
+          </div>
+        {% endif %}
+  
+        {% else %}
+          <p id="empty">No results for your search.</p>
+        {% endif %}
+
+      {% endpaginate %}
+  </section><!--end main-->
+</div><!-- interior_wrap -->

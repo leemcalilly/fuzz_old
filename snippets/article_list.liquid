@@ -1,0 +1,9 @@
+<h2>Recent Blog Posts</h2>
+
+<ul id="blog_posts">
+  {% for article in blogs.fuzz.articles %}
+  <li>
+     <a href="{{ article.url }}">{{ article.title }}</a>
+  </li>
+  {% endfor %}
+</ul>

@@ -1,0 +1,131 @@
+<div id="interior_wrap" class="cf">
+  <section id="content" class="cf">
+    <div id="main" class="g3 cf">
+    
+      <div id="product_left" class="g2 cf">
+        <div id="product_images" class="cf">
+          <div id="product_main_image" class="cf">
+            <img src="{{ product.images[0] | product_img_url: "grande" }}" alt="{{ product.title | escape }}" />
+          </div><!-- end product_main_image -->
+        
+          <div id="product_thumbs" class="cf">
+            {% if product.images.size > 1 %}
+              <ul id="mycarousel" class="jcarousel-skin-fuzz">
+                {% for image in product.images %}
+                  <li>
+                    <a {% if forloop.first %} class="active"{% endif %} href="{{ image | product_img_url: "grande" }}">
+                      <img src="{{ image | product_img_url: "small" }}" alt="{{ product.title | escape }}" />
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </div><!-- end product_thumbs -->
+        </div><!-- end product_images -->
+      
+        <div id="product_details">
+          <p>With The Fuzz Strap we took what works with a standard guitar strap and upgraded everything. We started with sturdy, cotton webbing that feels great on your shoulder. We added classic silver hardware and topped it off with a tasteful kodiak leather that's supple yet thick enough to hold your guitar or bass snug.</p>
+        </div><!-- end product_details -->
+      </div><!-- product_left -->
+    
+      <div id="product_right">
+        <div id="product_options" class="g1">
+          <h1>{{ product.title | escape }}</h1>
+          <h2 id="price">
+            <span>{{ product.price | money }}</span>
+              {% if product.compare_at_price_max > product.price %} 
+                <del>{{ product.compare_at_price_max | money }}</del>
+              {% endif %}
+          </h2><!-- end price -->
+      
+          <form method="post" action="/cart/add" class="clear">
+            {% if product.available %}
+              {% if product.variants.size > 1 %}
+                <fieldset id="variants">
+                  <select name="id" id="id">
+                    <option value="{{ product.variants.first.id }}" selected="selected">Choose a Color</option>                  
+                    {% for variant in product.variants %}
+                      {% if variant.available %}
+                        <option value="{{ variant.id }}">{{ variant.title | escape }}</option>
+                      {% else %}
+                        <option value="{{ variant.id }}" disabled="disabled">{{ variant.title | escape }} - SOLD OUT</option>
+                      {% endif %}
+                    {% endfor %}
+                  </select>
+                </fieldset><!-- end variants -->
+              {% else %}
+                {% for variant in product.variants %}
+                  <input type="hidden" name="id" value="{{ variant.id }}" />
+                {% endfor %}
+              {% endif %}
+            
+              <fieldset id="buy">
+                <button class="button pill icon add" type="submit" id="add">Add to Cart</button>
+              </fieldset><!--end buy -->
+            {% else %}
+              <h6>Sold Out</h6>
+            {% endif %}
+          </form><!--end form -->
+        </div><!--end product_options-->
+      
+        <div id="available_colors" class="g1 cf">
+          <h3>Available in 4 Rad Colors</h3>
+
+          <ul>
+            <li>
+                <a href="#" class="crippla_thumb">
+                <img src="http://cdn.shopify.com/s/files/1/0097/1902/files/the_crippla.png?2647" alt="The Fuzz Strap in the Black color is called The Crippla" />
+                </a>
+                The Crippla (Black)
+            </li>
+            <li>
+                <a href="#" class="willow_thumb">
+                <img src="http://cdn.shopify.com/s/files/1/0097/1902/files/the_willow_on_the_ride.png?2652" alt="The Fuzz Bag in the olive color is called The Willow on the Ride" />
+                </a>
+                The Willow on the Ride (Olive Drab)
+            </li>
+            <li>
+                <a href="#" class="suit_thumb">
+                <img src="http://cdn.shopify.com/s/files/1/0097/1902/files/the_suit.png?2639" alt="The Fuzz Bag in the navy color is called The Suit" />
+                </a>
+                The Suit (Navy)
+            </li>
+            <li>
+                <a href="#" class="sandwich_thumb">
+                <img src="http://cdn.shopify.com/s/files/1/0097/1902/files/the_country_club_sandwich.png?2633" alt="The Fuzz Strap in the tan color is called The Country Club Sandwich" />
+                </a>
+                The Country Club Sandwich (Tan)
+            </li>
+          </ul>
+        </div><!--end available_colors -->
+      </div><!-- end product_right -->
+    </div><!-- end main -->
+  </section><!-- end content -->
+
+  <section id="complementary" class="cf g3">
+    <div id="product_description" class="cf">
+      {{ product.description }}
+    </div><!-- end product_description -->
+  </section><!-- end complementary-->
+</div><!-- end interior_wrap -->
+
+<!-- popup images -->
+<div id="crippla_popup" class="dialog">
+    <img alt="The Crippla" src="http://cdn.shopify.com/s/files/1/0097/1902/files/the_crippla.png?2647" />
+    <p><a id="close_x" class="close" href="#">close</a></p>
+</div><!-- end crippla_popup -->
+        
+<div id="willow_popup" class="dialog">
+    <img alt="The Willow on the Ride" src="http://cdn.shopify.com/s/files/1/0097/1902/files/the_willow_on_the_ride.png?2652" alt="The Fuzz Bag in the olive color is called The Willow on the Ride" />
+    <p><a id="close_x" class="close" href="#">close</a></p>
+</div><!-- end willow_popup -->
+        
+<div id="suit_popup" class="dialog">
+    <img alt="The Suit" src="http://cdn.shopify.com/s/files/1/0097/1902/files/the_suit.png?2639" />
+    <p><a id="close_x" class="close" href="#">close</a></p>
+</div><!-- end suit_popup -->
+        
+<div id="sandwich_popup" class="dialog">
+    <img alt="The Country Club Sandwich" src="http://cdn.shopify.com/s/files/1/0097/1902/files/the_country_club_sandwich.png?2633" />
+    <p><a id="close_x" class="close" href="#">close</a></p>
+</div><!-- end sandwich_popup -->

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  
+  {{ content_for_header }}
+  
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+{% include 'meta' %}
+
+<!-- Optimized mobile viewport -->
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+
+<!-- Favicons and apple touch icons -->
+<!-- For iPhone 4 -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ 'apple-touch-icon-114x114.png' | asset_url }}">
+<!-- For iPad 1-->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ 'apple-touch-icon-72x72.png' | asset_url }}">
+<!-- For iPhone 3G, iPod Touch and Android -->
+<link rel="apple-touch-icon-precomposed" href="{{ 'favicon.png' | asset_url }}">
+<!-- For Nokia -->
+<link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}">
+<!-- For everything else -->
+<link rel="shortcut icon" href="{{ 'favicon.ico' | asset_url }}">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">
+
+<!-- http://t.co/y1jPVnT -->
+<link rel="canonical" href="/">
+</head>
+
+<body class="cf">
+  <div id="banner_wrap" class="cf">
+    <header role="banner" class="cf">
+      <h1 id="logo" class="g1 cf">
+        <a href="{{ shop.url }}">
+          {{ 'logo.png' | asset_url | img_tag:'Original Fuzz Logo' }}
+        </a>
+      </h1>
+      
+      <nav>
+        <ul>
+          {% for link in linklists.main-menu.links %}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {% endfor %}
+          
+          <li id="cart_icon">
+            <a href="/cart">
+              Cart ({{ cart.item_count }} 
+              {% if cart.item_count == 1 %}
+                item)
+              {% else %}
+                items)
+              {% endif %}
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+  </div><!-- end banner_wrap -->
+
+  {{ content_for_layout }}
+
+{% include 'fuzz-bag-popups' %}
+<div id="footer_wrap" class="cf">
+  <footer role="contentinfo" class="g3">
+    <p id="footer_links">
+      {% for link in linklists.footer.links %}
+         <a href="{{ link.url }}">{{ link.title }}</a>
+       {% endfor %}
+     </p>
+     <p id="security">Secure shopping powered by <a href="http://shopify.com">Shopify</a> and <a href="http://paypal.com">Paypal</a>.</p>
+     <p id="copyright">&copy; {{ 'now' | date: "%Y" }} {{ shop.name }}</p>
+  </footer>
+</div>
+
+<!-- Minimized jQuery from Google CDN -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
+
+<!-- additional scripts -->
+{{ 'plugins.js' | asset_url | script_tag }}
+{{ 'script.js' | asset_url | script_tag }}
+{{ 'helper.js' | asset_url | script_tag }}
+
+<!-- HTML5 IE Enabling Script -->
+<!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+<!-- CSS3 Media Queries -->
+{{ 'respond.min.js' | asset_url | script_tag }}
+
+<!-- homepage slideshow js -->
+{{ 'slider.js' | asset_url | script_tag }}
+{{ 'slider_customization.js' | asset_url | script_tag }}
+
+<!-- product image rollover js -->
+{{ 'product_image_rollover.js' | asset_url | script_tag }}
+
+<!-- lightbox_me -->
+{{ 'jquery.lightbox_me.js' | asset_url | script_tag }}
+{{ 'popups.js' | asset_url | script_tag }}
+
+<!-- jcarousel js -->
+{{ 'jquery_jcarousel.min.js' | asset_url | script_tag }}
+<script type="text/javascript">
+jQuery(document).ready(function() {
+    jQuery('#mycarousel').jcarousel({
+      // config here
+    });
+});
+</script>
+<!-- end jcarousel js -->
+
+</body>
+</html>

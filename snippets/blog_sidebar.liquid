@@ -1,0 +1,18 @@
+<div id="sidebar" class="g1 cf">    
+    {% if blog.all_tags != blank %}
+        <h2>Categories</h2>
+        <ul id="tags">
+          {% for tag in blog.all_tags %}
+          <li>
+            <a href="{{ shop.url}}/blogs/{{ blog.handle }}/tagged/{{ tag | handleize }}">{{ tag }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+    {% endif %}
+    
+    {% include 'article_list' %}
+    
+    {% include 'follow_fuzz' %}
+    
+    {% include 'video' %}
+</div><!-- end blog_sidebar -->

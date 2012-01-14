@@ -1,0 +1,20 @@
+<div id="interior_wrap" class="cf">
+  <section id="content" class="cf">
+    <div id="main" class="g2 cf">
+      <h1>{{ blog.title | escape }}</h1>
+
+      <div class="entry">
+        <div class="post_title cf">
+          <h2>{{ article.title | escape }}</h2>
+          <h3>{{ article.created_at | date: "%B %d, %Y" }} by {{ article.author | truncatewords: 1, '' }}</h3>
+        </div><!-- end post_title -->
+
+        <div class="article_body cf">
+          {{ article.content }}
+        </div><!-- end article_body -->
+      </div><!-- end entry-->    
+    </div><!-- end main -->
+  
+    {% include 'blog_sidebar' %}
+  </section>
+</div><!-- end interior_wrap -->

@@ -1,0 +1,32 @@
+<div id="interior_wrap" class="cf">
+  {% paginate blog.articles by 10 %}
+    <section id="content" class="cf">
+      <div id="main" class="g2 cf">
+        <h1>{{ blog.title | escape }}</h1>
+      
+        {% for article in blog.articles %}
+          <div class="cf entry{% if forloop.first %} start{% endif %}{% if forloop.last %} end{% endif %}">
+            <div class="post_title cf">
+              <h2><a href="{{ article.url }}">{{ article.title | escape }}</a></h2>
+              <h3>{{ article.created_at | date: "%B %d, %Y" }} by {{ article.author | truncatewords: 1, '' }}
+              </h3>
+            </div><!-- end post_title -->
+
+            <div class="post_body cf">
+              {{ article.content }}
+            </div><!-- end post_body -->
+          
+          </div><!-- end entry -->
+        {% endfor %}
+      
+        {% if paginate.pages > 1 %}
+          <div id="paginate" class="cf">
+            {{ paginate | default_pagination }}
+          </div>
+        {% endif %}
+      </div><!-- end main -->
+      
+      {% include 'blog_sidebar' %}
+    </section>
+  {% endpaginate %}
+</div><!-- end interior_wrap -->

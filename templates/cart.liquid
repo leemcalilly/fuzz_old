@@ -1,0 +1,50 @@
+<div id="interior_wrap">
+<section id="content" class="cf">
+  <div id="main" class="cf">
+    <div id="cart" class="g3 cf">
+      <h1>Your Cart</h1>{% if cart.item_count > 0 %}
+      
+      <form action="/cart" method="post" name="cartform">        
+          {% for item in cart.items %}
+            <div class="{% cycle "odd", "even" %} cart_item">
+              <div class="item_title">
+                <h3><a href="{{ item.product.url | within: collections.all }}">{{ item.product.title | escape }}</a></h3>
+                <h4>{{item.variant.title}}</h4>
+                <h5>{{ item.price | money }}</h5>
+              </div><!-- end item_title -->
+              
+              <div class="item_quantity">
+                <fieldset>
+                  <label>Quantity</label>
+                  <input class="quantity" type="text" class="field" name="updates[]" id="updates_{{ item.variant.id }}" value="{{ item.quantity }}" />                
+                  <input type="submit" value="Update" alt="Update" name="update" class="update button" />
+                  <p class="item_total"><strong>Item Total: {{ item.line_price | money }}</strong></p>
+                </fieldset>
+              </div><!-- end item_quantity -->
+              
+              <p class="remove_item"><a class="button icon remove danger" href="/cart/change/{{ item.variant.id }}?quantity=0">Remove Item</a></p>
+            </div><!-- end cart_item -->
+          {% endfor %}
+
+
+        <div id="complete" >  
+          <div class="total">
+            <h2>Total: <span>{{ cart.total_price | money }}</span></h2>
+          </div><!-- end total -->
+             
+          <div id="checkout">
+            <h3><button class="button pill" type="submit" value="Checkout" alt="Checkout" name="checkout">Checkout</button></h3>
+          </div><!-- end checkout -->
+        </div><!-- end complete -->
+      </form>
+
+      {% else %}
+        <p id="empty">Your shopping cart is empty. <a href="/products/the-original-fuzz-bag">Continue shopping...</a></p>
+      {% endif %}
+      
+    </div><!-- end cart -->
+
+  </div> <!-- end main-->
+</section>
+
+</div><!-- end interior_wrap -->
