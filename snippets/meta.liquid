@@ -27,8 +27,8 @@
   <meta property="og:image" content="http://cdn.shopify.com/s/files/1/0097/1902/files/facebook_logo.png?2856" />
   <meta property="og:type" content="website"/>
 {% elsif template == 'article' %}
-  <title>{{ page_title }} | {{ shop.name }}</title>
-  <meta property="og:title" content="{{ page_title | strip_html | strip_newlines | truncatewords: maxwords | escape }} | {{ shop.name }}"/>
+  <title>{{ article.title }} | {{ shop.name }}</title>
+  <meta property="og:title" content="{{ article.title | strip_html | strip_newlines | truncatewords: maxwords | escape }} | {{ shop.name }}"/>
   <meta name="description" property="og:description" content="{{ article.content | strip_html | strip_newlines | truncatewords: maxwords | escape }}" />
   <meta property="og:url" content="{{ shop.url }}{{ article.url }}" />
   <meta property="og:image" content="http://cdn.shopify.com/s/files/1/0097/1902/files/facebook_logo.png?2856" />
@@ -49,6 +49,7 @@
 {% endif %}
 
 {% if template contains 'product' and collection %}
+  <title>{{ product.title }} | {{ shop.name }}</title>
   <meta property="og:title" content="{{ product.title }} | {{ shop.name }}"/>
   <meta name="description" property="og:description" content="{{ shop.description }}">
   <meta property="og:url" content="{{ shop.url }}{{ product.url }}" />
