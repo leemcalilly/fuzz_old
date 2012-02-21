@@ -17,34 +17,34 @@
   <meta property="og:title" content="{{ page_title }} | {{ shop.name }}"/>
   <meta name="description" property="og:description" content="{{ page.content | strip_html | strip_newlines | truncatewords: maxwords | escape }}" />
   <meta property="og:url" content="{{ shop.url }}{{ page.url }}" />
-  <meta property="og:image" content="http://cdn.shopify.com/s/files/1/0097/1902/files/facebook_logo.png?2856" />
+  <meta property="og:image" content="http://cdn.shopify.com/s/files/1/0097/1902/files/facebook_logo.png?2939" />
   <meta property="og:type" content="website"/>
 {% elsif template == 'blog' %}
   <title>{{ page_title }} | {{ shop.name }}</title>
   <meta property="og:title" content="{{ page_title }} | {{ shop.name }}"/>
   <meta name="description" property="og:description" content="The Original Fuzz Blog. News and notes from Original Fuzz.">
   <meta property="og:url" content="{{ shop.url }}{{ blog.url }}" />
-  <meta property="og:image" content="http://cdn.shopify.com/s/files/1/0097/1902/files/facebook_logo.png?2856" />
+  <meta property="og:image" content="http://cdn.shopify.com/s/files/1/0097/1902/files/facebook_logo.png?2939" />
   <meta property="og:type" content="website"/>
 {% elsif template == 'article' %}
   <title>{{ article.title }} | {{ shop.name }}</title>
   <meta property="og:title" content="{{ article.title | strip_html | strip_newlines | truncatewords: maxwords | escape }} | {{ shop.name }}"/>
   <meta name="description" property="og:description" content="{{ article.content | strip_html | strip_newlines | truncatewords: maxwords | escape }}" />
   <meta property="og:url" content="{{ shop.url }}{{ article.url }}" />
-  <meta property="og:image" content="http://cdn.shopify.com/s/files/1/0097/1902/files/facebook_logo.png?2856" />
+  <meta property="og:image" content="http://cdn.shopify.com/s/files/1/0097/1902/files/facebook_logo.png?2939" />
   <meta property="og:type" content="article"/>
 {% elsif template == '404' %}
   <title>Page Not Found | {{ shop.name }}</title>
   <meta name="description" property="og:description" content="{{ shop.description }}">
   <meta property="og:url" content="{{ shop.url }}" />
-  <meta property="og:image" content="http://cdn.shopify.com/s/files/1/0097/1902/files/facebook_logo.png?2856" />
+  <meta property="og:image" content="http://cdn.shopify.com/s/files/1/0097/1902/files/facebook_logo.png?2939" />
   <meta property="og:type" content="website"/>
 {% else %}
   <title>{{ shop.name }}</title>
   <meta property="og:title" content="{{ shop.name }}"/>
   <meta name="description" property="og:description" content="{{ shop.description }}">
   <meta property="og:url" content="{{ shop.url }}" />
-  <meta property="og:image" content="http://cdn.shopify.com/s/files/1/0097/1902/files/facebook_logo.png?2856" />
+  <meta property="og:image" content="http://cdn.shopify.com/s/files/1/0097/1902/files/facebook_logo.png?2939" />
   <meta property="og:type" content="website"/>
 {% endif %}
 
